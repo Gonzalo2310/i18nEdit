@@ -12,4 +12,8 @@ const typeItemFile = async (url, file) => {
   }
 }
 
-export { readFolder, typeItemFile }
+const readFileContent = async (url) => {
+  return fs.readFileSync(url, 'utf8')
+}
+
+export { readFolder, typeItemFile, readFileContent }

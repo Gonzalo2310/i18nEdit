@@ -1,5 +1,5 @@
 import { readFolder, typeItemFile } from '../core/filesSystem'
-// import typeItemFile from '../core/filesSystem'
+import parserJson from './json/parser'
 
 class Treei18nNode {
  type = null // Folder / File / field
@@ -26,6 +26,7 @@ const treeFolder = async (url, parent = null) => {
         if (response.file) {
           element.type = 'file'
           element.path = url + '/' + item
+          element.content = parserJson(url + '/' + item)
         }
         if (response.directory) {
           element.type = 'folder'

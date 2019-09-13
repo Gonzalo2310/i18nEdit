@@ -14,7 +14,7 @@ export default (app, http) => {
     res.sendFile(rootPath + '/i18nEdit/dist/index.html')
   })
   app.get('/tree', (req, res) => {
-    Promise.all([treeFolder(rootPath + '/i18nEdit/src/examples')]).then((response) => {
+    Promise.all([treeFolder(rootPath + '/i18nEdit/src/examples/i18n-01')]).then((response) => {
       res.json({ data: response })
     })
   })
