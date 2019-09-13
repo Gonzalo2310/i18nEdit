@@ -1,20 +1,10 @@
 import { readFolder, typeItemFile } from '../core/filesSystem'
-import parserJson from './json/parser'
-
-class Treei18nNode {
- type = null // Folder / File / field
-  reference = null // reference or not
-  path = null // path element
-  content = {
-    field: null,
-    value: null
-  }
-  children = []
-}
+import Treei18nNode from '../Class/Treei18nNode'
 
 const treeFolder = async (url, parent = null) => {
   if (!parent) {
     parent = new Treei18nNode()
+    parent.label = 'Root'
   }
   let items = await readFolder(url)
   let result = parent
@@ -26,11 +16,12 @@ const treeFolder = async (url, parent = null) => {
         if (response.file) {
           element.type = 'file'
           element.path = url + '/' + item
-          element.content = parserJson(url + '/' + item)
+          element.label = item
         }
         if (response.directory) {
           element.type = 'folder'
           element.path = url + '/' + item
+          element.label = item
           Promise.all([treeFolder(url + '/' + item, element)]).then((response) => {
             element.children = response[0]
           })
@@ -40,7 +31,7 @@ const treeFolder = async (url, parent = null) => {
     })
   }
   return Promise.all([result]).then((response) => {
-    return response
+    return response[0]
   })
 }
 

@@ -1,11 +1,11 @@
 import { readFileContent } from '../../core/filesSystem'
 
 const parserJson = async (file) => {
-  const result = Promise.all([readFileContent(file)]).then((response) => {
-    return JSON.parse(response[0])
+  return new Promise(function (resolve, reject) {
+    readFileContent(file, (err, data) => {
+      err ? reject(err) : resolve(data)
+    })
   })
-  const awaitResult = await result
-  return awaitResult
 }
 
 export default parserJson
