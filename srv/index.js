@@ -3,7 +3,7 @@ import { resolve } from 'path'
 import cors from 'cors'
 import findAndReplace from '../src/utils/findAndReplace'
 import treeFolder from '../src/utils/Treei18nNode'
-
+import toElementUI from '../src/utils/UI/treeToElementUI'
 const rootPath = resolve(__dirname, '../../')
 
 export default (app, http) => {
@@ -15,7 +15,7 @@ export default (app, http) => {
   })
   app.get('/tree', (req, res) => {
     Promise.all([treeFolder(rootPath + '/i18nEdit/src/examples/i18n-01')]).then((response) => {
-      res.json({ data: response })
+      res.json({ data: toElementUI(response) })
     })
   })
   app.post('/update', (req, res) => {

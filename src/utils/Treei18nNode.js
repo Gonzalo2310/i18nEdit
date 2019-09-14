@@ -4,7 +4,8 @@ import Treei18nNode from '../Class/Treei18nNode'
 const treeFolder = async (url, parent = null) => {
   if (!parent) {
     parent = new Treei18nNode()
-    parent.label = 'Root'
+    parent.Assign.name('Root')
+    parent.Assign.uuid()
   }
   let items = await readFolder(url)
   let result = parent
@@ -14,19 +15,21 @@ const treeFolder = async (url, parent = null) => {
         let element = new Treei18nNode()
         response = response[0]
         if (response.file) {
-          element.type = 'file'
+          element.Assign.type('file')
           element.path = url + '/' + item
-          element.label = item
+          element.Assign.name(item)
+          element.Assign.uuid()
         }
         if (response.directory) {
-          element.type = 'folder'
+          element.Assign.type('folder')
           element.path = url + '/' + item
-          element.label = item
+          element.Assign.name(item)
+          element.Assign.uuid()
           Promise.all([treeFolder(url + '/' + item, element)]).then((response) => {
-            element.children = response[0]
+            element.Assign.children(response[0])
           })
         }
-        result.children.push(element)
+        result.Assign.children(element)
       })
     })
   }
