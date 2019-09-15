@@ -15,8 +15,6 @@ const searchInFileName = (nameFile) => {
   return region ? searchInJson(country, region) : searchInJson(country)
 }
 
-export default searchInFileName
-
 function searchInJson (country, region = null) {
   const zone = tableLanguage[country]
   if (!zone) {
@@ -24,3 +22,5 @@ function searchInJson (country, region = null) {
   }
   return region ? zone.cultures[country + '-' + region].native : zone.native
 }
+
+export default searchInFileName
