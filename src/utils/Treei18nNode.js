@@ -1,5 +1,8 @@
 import { readFolder, typeItemFile } from '../core/filesSystem'
 import Treei18nNode from '../Class/Treei18nNode'
+import searchInFileName from './searchLanguage/searchInFileName'
+
+const regex = /^[a-zA-Z|-]+/g
 
 const treeFolder = async (url, parent = null) => {
   if (!parent) {
@@ -19,6 +22,7 @@ const treeFolder = async (url, parent = null) => {
           element.path = url + '/' + item
           element.Assign.name(item)
           element.Assign.uuid()
+          element.Assign.country(searchInFileName(item.match(regex)[0]))
         }
         if (response.directory) {
           element.Assign.type('folder')

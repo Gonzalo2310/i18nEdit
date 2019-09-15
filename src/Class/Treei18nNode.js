@@ -11,6 +11,7 @@ class Treei18nNode {
   #uuid = null
   #content = null
   #children = []
+  #country = null
   // Set functions
   Assign = {
     type: (type) => {
@@ -54,7 +55,8 @@ class Treei18nNode {
       this.#children.push(children)
     },
     name: (name) => { this.#name = name },
-    uuid: () => { this.#uuid = uuid() }
+    uuid: () => { this.#uuid = uuid() },
+    country: (country) => { this.#country = country }
   }
   // Get functions
   Read = {
@@ -62,7 +64,8 @@ class Treei18nNode {
     content: () => { return this.#content },
     children: () => { return this.#children },
     name: () => { return this.#name },
-    uuid: () => { return this.#uuid }
+    uuid: () => { return this.#uuid },
+    country: () => { return this.#country }
   }
 
   // VisualFormat

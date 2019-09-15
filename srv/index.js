@@ -4,7 +4,11 @@ import cors from 'cors'
 import findAndReplace from '../src/utils/findAndReplace'
 import treeFolder from '../src/utils/Treei18nNode'
 import toElementUI from '../src/utils/UI/treeToElementUI'
+import dotenv from 'dotenv'
+
 const rootPath = resolve(__dirname, '../../')
+
+dotenv.config()
 
 export default (app, http) => {
   app.use(express.json())
@@ -14,7 +18,7 @@ export default (app, http) => {
     res.sendFile(rootPath + '/i18nEdit/dist/index.html')
   })
   app.get('/tree', (req, res) => {
-    Promise.all([treeFolder(rootPath + '/i18nEdit/src/examples/i18n-01')]).then((response) => {
+    Promise.all([treeFolder(rootPath + process.env.APP_EDIT_URL)]).then((response) => {
       res.json({ data: toElementUI(response) })
     })
   })
