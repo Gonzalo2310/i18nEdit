@@ -29,7 +29,30 @@ class Treei18nNode {
         }
       }
     },
-    children: (children) => { children ? this.#children.push(children) : this.#children.push(null) },
+    children: (children) => {
+      if (!children) {
+        this.#children.push(null)
+      }
+      if (Array.isArray(children) && children.length > 0) {
+        children.forEach(item => {
+          if (item.Read.type() === 'folder') {
+            this.#children.unshift(item)
+          } else {
+            this.#children.push(item)
+          }
+        })
+        return
+      }
+      if (typeof children === 'object') {
+        if (children.Read.type() === 'folder') {
+          this.#children.unshift(children)
+        } else {
+          this.#children.push(children)
+        }
+        return
+      }
+      this.#children.push(children)
+    },
     name: (name) => { this.#name = name },
     uuid: () => { this.#uuid = uuid() }
   }

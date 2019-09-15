@@ -1,3 +1,12 @@
+@import 'colors';
 .text-center {
   text-align: center;
+}
+
+.file {
+  color: $file-letter;
+}
+
+.folder {
+  color: $folder-letter;
 }
