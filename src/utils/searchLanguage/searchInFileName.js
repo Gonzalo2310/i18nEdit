@@ -1,26 +1,26 @@
-import tableLanguage from '../../resources/languages'
+import tableLanguage from '../../resources/language'
+import tableCountry from '../../resources/country'
 
 const searchInFileName = (nameFile) => {
-  console.log(tableLanguage.es)
   const name = nameFile
   let country = null
   let region = null
   if (name.includes('-')) {
     let tmpArray = name.split('-')
-    country = tmpArray[0]
-    region = tmpArray[1]
+    country = tableLanguage[tmpArray[0]]
+    tableCountry.forEach(item => {
+      if (item[0].Code === tmpArray[1]) {
+        region = item[0]
+      }
+    })
   } else {
-    country = name
+    country = tableLanguage[name]
   }
   return region ? searchInJson(country, region) : searchInJson(country)
 }
 
 function searchInJson (country, region = null) {
-  const zone = tableLanguage[country]
-  if (!zone) {
-    return 'Not found'
-  }
-  return region ? zone.cultures[country + '-' + region].native : zone.native
+  return region ? country.nativeName + ' ( ' + region.Name + ' )' : country.nativeName
 }
 
 export default searchInFileName

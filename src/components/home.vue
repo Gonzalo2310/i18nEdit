@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-tree :data="tree" node-key="uuid">
+    <el-tree :data="elTree" node-key="uuid">
       <span class="custom-tree-node" slot-scope="{ node, data }">
         <span :class="data.style">{{ node.label }}</span>
       </span>
@@ -9,23 +9,24 @@
 </template>
 
 <script>
-import axios from 'axios'
+
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'home',
-  data () {
-    return {
-      tree: []
-    }
-  },
   mounted () {
-    const me = this
-    axios.get('/tree').then((response) => {
-      me.tree = response.data.data
-    })
+    this.init()
   },
   computed: {
+    ...mapState({
+      tree: state => state.tree,
+      elTree: state => state.elTree
+    })
   },
-  methods: {}
+  methods: {
+    ...mapActions({
+      init: 'initTree'
+    })
+  }
 }
 </script>

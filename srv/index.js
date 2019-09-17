@@ -19,7 +19,7 @@ export default (app, http) => {
   })
   app.get('/tree', (req, res) => {
     Promise.all([treeFolder(rootPath + process.env.APP_EDIT_URL)]).then((response) => {
-      res.json({ data: toElementUI(response) })
+      res.json({ data: { elTree: toElementUI(response), Tree: response } })
     })
   })
   app.post('/update', (req, res) => {
