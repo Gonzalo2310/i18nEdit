@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-tree :data="elTree" node-key="uuid">
+    <el-tree :data="elTree" node-key="uuid" @node-click="selectNode">
       <span class="custom-tree-node" slot-scope="{ node, data }">
         <span :class="data.style">{{ node.label }}</span>
       </span>
@@ -10,7 +10,7 @@
 
 <script>
 
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'home',
@@ -21,12 +21,19 @@ export default {
     ...mapState({
       tree: state => state.tree,
       elTree: state => state.elTree
+    }),
+    ...mapGetters({
+      search: 'searchById'
     })
   },
   methods: {
     ...mapActions({
-      init: 'initTree'
-    })
+      init: 'initTree',
+      content: 'contentFile'
+    }),
+    selectNode (node, data, tree) {
+      console.log(this.search(node.uuid))
+    }
   }
 }
 </script>

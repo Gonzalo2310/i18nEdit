@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getAllTree } from './store/getData'
+import { getAllTree, getFileContent } from './store/getData'
+import searchUuid from './utils/searchUUID'
 
 Vue.use(Vuex)
 
@@ -16,6 +17,14 @@ export default new Vuex.Store({
   actions: {
     initTree ({ commit }) {
       getAllTree(commit)
+    },
+    contentFile ({ commit }, uuid) {
+      getFileContent(commit, uuid)
+    }
+  },
+  getters: {
+    searchById: state => uuid => {
+      return searchUuid(uuid, state.tree)
     }
   }
 })

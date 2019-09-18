@@ -22,6 +22,9 @@ export default (app, http) => {
       res.json({ data: { elTree: toElementUI(response), Tree: response } })
     })
   })
+  app.get('/file/content', (req, res) => {
+    res.json({ data: req.query.uuid })
+  })
   app.post('/update', (req, res) => {
     let response = []
     req.body.data.foo.forEach(item => {
