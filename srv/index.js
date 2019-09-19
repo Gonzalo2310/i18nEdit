@@ -5,9 +5,11 @@ import findAndReplace from '../src/utils/findAndReplace'
 import treeFolder from '../src/utils/Treei18nNode'
 import toElementUI from '../src/utils/UI/treeToElementUI'
 import dotenv from 'dotenv'
+import searchUuid from '../src/utils/searchUUID'
 
 const rootPath = resolve(__dirname, '../../')
 
+let treeComplex = []
 dotenv.config()
 
 export default (app, http) => {
@@ -19,11 +21,12 @@ export default (app, http) => {
   })
   app.get('/tree', (req, res) => {
     Promise.all([treeFolder(rootPath + process.env.APP_EDIT_URL)]).then((response) => {
-      res.json({ data: { elTree: toElementUI(response), Tree: response } })
+      treeComplex = response
+      res.json({ data: toElementUI(response) })
     })
   })
   app.get('/file/content', (req, res) => {
-    res.json({ data: req.query.uuid })
+    res.json({ data: searchUuid(req.query.uuid, treeComplex) })
   })
   app.post('/update', (req, res) => {
     let response = []

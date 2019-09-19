@@ -10,7 +10,7 @@
 
 <script>
 
-import { mapActions, mapState, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'home',
@@ -21,15 +21,13 @@ export default {
     ...mapState({
       tree: state => state.tree,
       elTree: state => state.elTree
-    }),
-    ...mapGetters({
-      search: 'searchById'
     })
   },
   methods: {
     ...mapActions({
       init: 'initTree',
-      content: 'contentFile'
+      content: 'contentFile',
+      search: 'searchById'
     }),
     selectNode (node, data, tree) {
       console.log(this.search(node.uuid))

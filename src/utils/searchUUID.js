@@ -10,12 +10,13 @@ const searchUuid = (uuid, VModel) => {
     if (item.Read.uuid() === uuid) {
       result = item
     }
-    if (item.Read.children() && item.Read.children().length > 0) {
+    /* if (item.Read.children() && item.Read.children().length > 0) {
+      console.log(item.Read.children())
       let childrenResult = searchUuid(uuid, item.Read.children())
       if (childrenResult) {
         result = item
       }
-    }
+    } */
   })
   return result
 }
