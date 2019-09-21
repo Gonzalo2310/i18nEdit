@@ -54,7 +54,7 @@ class Treei18nNode {
       }
       this.#children.push(children)
     },
-    name: (name) => { this.#name = name },
+    name: (name) => { this.#name = name + '( ' + this.#uuid + ' )' },
     uuid: () => { this.#uuid = uuid() },
     country: (country) => { this.#country = country }
   }

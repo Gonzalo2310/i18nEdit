@@ -1,24 +1,30 @@
-const searchUuid = (uuid, VModel) => {
-  let result = null
-  console.log(typeof VModel)
-  if (!Array.isArray(VModel) || VModel.length === 0) {
-    console.log('primitive')
-    return result
-  }
-  VModel.forEach(item => {
-    console.log(item.Read.uuid())
-    if (item.Read.uuid() === uuid) {
-      result = item
+export function searchUuid (uuid, VModel) {
+  if (Array.isArray(VModel)) {
+    if (VModel.length > 0) {
+      VModel.forEach(item => {
+        let temporal = searchUuid(uuid, item)
+        if (temporal) {
+          return temporal.path
+        }
+      })
     }
-    /* if (item.Read.children() && item.Read.children().length > 0) {
-      console.log(item.Read.children())
-      let childrenResult = searchUuid(uuid, item.Read.children())
-      if (childrenResult) {
-        result = item
-      }
-    } */
-  })
-  return result
+    return '0'
+  }
+  if (VModel.Read) {
+    if (VModel.Read.uuid() === uuid) {
+      return VModel.path
+    }
+  }
+  if (VModel.Read) {
+    let tmpArray = VModel.Read.children()
+    if (tmpArray && tmpArray.length > 0) {
+      tmpArray.forEach((item, index) => {
+        let temporal = searchUuid(uuid, item)
+        if (temporal) {
+          return temporal.path
+        }
+      })
+    }
+  }
+  return '0'
 }
-
-export default searchUuid

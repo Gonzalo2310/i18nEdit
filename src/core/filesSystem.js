@@ -12,8 +12,8 @@ const typeItemFile = async (url, file) => {
   }
 }
 
-const readFileContent = async (url, callback) => {
-  return fs.readFile(url, 'utf8', callback)
+const readFileContent = async (url) => {
+  return fs.readFileSync(url, 'utf8')
 }
 
 export { readFolder, typeItemFile, readFileContent }

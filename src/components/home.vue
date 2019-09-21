@@ -30,7 +30,7 @@ export default {
       search: 'searchById'
     }),
     selectNode (node, data, tree) {
-      console.log(this.search(node.uuid))
+      console.log(this.content(node.path))
     }
   }
 }

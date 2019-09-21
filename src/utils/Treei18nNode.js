@@ -7,8 +7,8 @@ const regex = /^[a-zA-Z|-]+/g
 const treeFolder = async (url, parent = null) => {
   if (!parent) {
     parent = new Treei18nNode()
-    parent.Assign.name('Root')
     parent.Assign.uuid()
+    parent.Assign.name('Root')
   }
   let items = await readFolder(url)
   let result = parent
@@ -20,15 +20,15 @@ const treeFolder = async (url, parent = null) => {
         if (response.file) {
           element.Assign.type('file')
           element.path = url + '/' + item
-          element.Assign.name(item)
           element.Assign.uuid()
+          element.Assign.name(item)
           element.Assign.country(searchInFileName(item.match(regex)[0]))
         }
         if (response.directory) {
           element.Assign.type('folder')
           element.path = url + '/' + item
-          element.Assign.name(item)
           element.Assign.uuid()
+          element.Assign.name(item)
           Promise.all([treeFolder(url + '/' + item, element)]).then((response) => {
             element.Assign.children(response[0])
           })

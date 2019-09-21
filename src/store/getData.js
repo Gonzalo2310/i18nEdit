@@ -11,8 +11,8 @@ export const getAllTree = (commit) => {
   })
 }
 
-export const getFileContent = (commit, uuid) => {
-  axios.get('/file/content/', { params: { uuid } }).then((response) => {
+export const getFileContent = (commit, path) => {
+  axios.get('/file/content/', { params: { path } }).then((response) => {
     console.log(response)
   }).catch((error) => {
     console.log('error')
