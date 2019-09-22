@@ -1,8 +1,8 @@
 import VueI18n from 'vue-i18n'
 import Vue from 'vue'
 
-import es from './locale/es/index'
-import en from './locale/en/index'
+import es from './es'
+import en from './en'
 
 Vue.use(VueI18n)
 
@@ -12,9 +12,9 @@ const messages = {
 }
 
 const i18n = new VueI18n({
-  locale: 'es',
+  locale: 'en',
   messages,
-  fallbackLocale: 'en'
+  fallbackLocale: 'es'
 })
 
 export default i18n

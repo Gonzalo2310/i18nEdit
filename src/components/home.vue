@@ -5,7 +5,6 @@
         <span :class="data.style">{{ node.label }}</span>
       </span>
     </el-tree>
-    {{files[0].file.accept}}
   </div>
 </template>
 
@@ -17,6 +16,7 @@ export default {
   name: 'home',
   mounted () {
     this.init()
+    console.log(this.$i18n.locale)
   },
   computed: {
     ...mapState({
