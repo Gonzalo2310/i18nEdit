@@ -29,7 +29,7 @@ export default (app, http) => {
   app.get('/file/content', (req, res) => {
     Promise.all([readFileContent(req.query.path)]).then((response) => {
       console.log(response[0])
-      res.send(response[0])
+      res.json({ data: JSON.parse(response[0]) })
     })
   })
   app.post('/update', (req, res) => {

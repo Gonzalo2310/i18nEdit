@@ -11,9 +11,11 @@ export const getAllTree = (commit) => {
   })
 }
 
-export const getFileContent = (commit, path) => {
+export const getFileContent = (commit, path, name) => {
   axios.get('/file/content/', { params: { path } }).then((response) => {
-    console.log(response)
+    console.log('raspiest: ', name)
+    console.log(response.data.data)
+    commit('updateFile', { file: response.data.data, name })
   }).catch((error) => {
     console.log('error')
     console.log(error)

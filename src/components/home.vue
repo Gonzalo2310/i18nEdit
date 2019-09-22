@@ -5,6 +5,7 @@
         <span :class="data.style">{{ node.label }}</span>
       </span>
     </el-tree>
+    {{files[0].file.accept}}
   </div>
 </template>
 
@@ -20,7 +21,8 @@ export default {
   computed: {
     ...mapState({
       tree: state => state.tree,
-      elTree: state => state.elTree
+      elTree: state => state.elTree,
+      files: state => state.files
     })
   },
   methods: {
@@ -30,7 +32,11 @@ export default {
       search: 'searchById'
     }),
     selectNode (node, data, tree) {
-      console.log(this.content(node.path))
+      console.log(node)
+      if (!node.path) {
+        return
+      }
+      this.content({ path: node.path, name: node.label })
     }
   }
 }

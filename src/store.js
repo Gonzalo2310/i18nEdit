@@ -6,17 +6,27 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    elTree: []
+    elTree: [],
+    files: []
   },
   mutations: {
-    updateElTree: (state, tree) => { state.elTree = tree }
+    updateElTree: (state, tree) => { state.elTree = tree },
+    updateFile: (state, { file, name }) => {
+      console.log(file, name)
+      state.files.push({
+        name,
+        file
+      })
+    }
   },
   actions: {
     initTree ({ commit }) {
       getAllTree(commit)
     },
-    contentFile ({ commit }, path) {
-      getFileContent(commit, path)
+    contentFile ({ commit }, { path, name }) {
+      console.log('path: ', path)
+      console.log('name: ', name)
+      getFileContent(commit, path, name)
     },
     searchById: ({ commit }, uuid) => {
       getFileContent(commit, uuid)
