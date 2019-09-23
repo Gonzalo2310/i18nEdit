@@ -3,10 +3,9 @@
     title="Tips"
     :visible.sync="dialogVisible"
     width="80%">
-    <span>This is a message</span>
+    <span>{{$t('edit.title')}}</span>
     <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">Cancel</el-button>
-    <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+    <el-button type="primary" @click="emit('confirm')">{{$t('buttons.confirm')}}</el-button>
   </span>
   </el-dialog>
 </template>
@@ -19,6 +18,15 @@ export default {
       required: false,
       type: Boolean,
       default: false
+    }
+  },
+  methods: {
+    emit (event, value = null) {
+      if (value) {
+        this.$emit(event, value)
+      } else {
+        this.$emit(event)
+      }
     }
   }
 }

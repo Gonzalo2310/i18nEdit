@@ -5,15 +5,23 @@
         <span :class="data.style">{{ node.label }}</span>
       </span>
     </el-tree>
+    <local-online :dialog-visible="viewLocalOnline" @confirm="viewLocalOnline = false"/>
   </div>
 </template>
 
 <script>
 
 import { mapActions, mapState } from 'vuex'
+import LocalOnline from './Element-ui/Modals/LocalOnline'
 
 export default {
   name: 'home',
+  components: { LocalOnline },
+  data () {
+    return {
+      viewLocalOnline: true
+    }
+  },
   mounted () {
     this.init()
     console.log(this.$i18n.locale)
