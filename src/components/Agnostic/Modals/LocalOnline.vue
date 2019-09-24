@@ -5,17 +5,14 @@
     width="80%">
     <span>{{$t('edit.title')}}</span>
     <span slot="footer" class="dialog-footer">
-    <!--<el-button type="primary" @click="emit('confirm')">{{$t('buttons.confirm')}}</el-button>-->
-      <in-button type="primary" text="Pulsa" _ui="vuetify"/>
+    <el-button type="primary" @click="emit('confirm')">{{$t('buttons.confirm')}}</el-button>
   </span>
   </el-dialog>
 </template>
 
 <script>
-import InButton from '../../Agnostic/Components/button/InButton'
 export default {
   name: 'LocalOnline',
-  components: { InButton },
   props: {
     dialogVisible: {
       required: false,
