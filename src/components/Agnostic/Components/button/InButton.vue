@@ -1,7 +1,8 @@
 <template>
   <div>
     <el-button :type="type" v-if="ui === 'element' ">{{text}}</el-button>
-    <v-btn color="secondary" >pulsa</v-btn>
+    <v-btn color="secondary" v-if="ui === 'vuetify'">pulsa</v-btn>
+    <Button :type="type" v-if="ui ==='iview'">{{text}}</Button>
     {{ui}} / {{type}}
   </div>
 </template>
@@ -23,7 +24,7 @@ export default {
       required: false,
       default: 'none',
       validation: function (value) {
-        return ['none', 'element', 'vuetify'].indexOf(value) !== -1
+        return ['none', 'element', 'vuetify', 'iview'].indexOf(value) !== -1
       }
     },
     text: {
@@ -34,7 +35,7 @@ export default {
   },
   computed: {
     ui () {
-      return this._ui === 'none' ? process.env.APP_UI : this._ui
+      return this._ui === 'none' ? process.env.VUE_APP_UI : this._ui
     }
   }
 }

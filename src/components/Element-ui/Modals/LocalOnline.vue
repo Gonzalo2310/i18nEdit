@@ -6,7 +6,7 @@
     <span>{{$t('edit.title')}}</span>
     <span slot="footer" class="dialog-footer">
     <!--<el-button type="primary" @click="emit('confirm')">{{$t('buttons.confirm')}}</el-button>-->
-      <in-button type="primary" text="Pulsa" _ui="vuetify"/>
+      <in-button type="primary" text="Pulsa" />
   </span>
   </el-dialog>
 </template>
