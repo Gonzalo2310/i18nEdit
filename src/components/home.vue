@@ -5,14 +5,14 @@
         <span :class="data.style">{{ node.label }}</span>
       </span>
     </el-tree>
-    <local-online :dialog-visible="viewLocalOnline" @confirm="viewLocalOnline = false"/>
+    <local-online :dialog-visible="viewLocalOnline" @close="viewLocalOnline = false"/>
   </div>
 </template>
 
 <script>
 
 import { mapActions, mapState } from 'vuex'
-import LocalOnline from './Element-ui/Modals/LocalOnline'
+import LocalOnline from './Modals/LocalOnline'
 
 export default {
   name: 'home',
