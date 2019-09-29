@@ -5,7 +5,8 @@
         <span :class="data.style">{{ node.label }}</span>
       </span>
     </el-tree>
-    <local-online :dialog-visible="viewLocalOnline" @close="viewLocalOnline = false"/>
+    <local-online :dialog-visible="viewLocalOnline" @close="closeViewLocalOnline()"/>
+    <language-select :dialog-visible="viewLanguageSelect" @close="closeViewLanguageSelect()"/>
   </div>
 </template>
 
@@ -13,13 +14,15 @@
 
 import { mapActions, mapState } from 'vuex'
 import LocalOnline from './Modals/LocalOnline'
+import LanguageSelect from './Modals/LanguageSelect'
 
 export default {
   name: 'home',
-  components: { LocalOnline },
+  components: { LocalOnline, LanguageSelect },
   data () {
     return {
-      viewLocalOnline: true
+      viewLocalOnline: true,
+      viewLanguageSelect: false
     }
   },
   mounted () {
@@ -39,6 +42,13 @@ export default {
       content: 'contentFile',
       search: 'searchById'
     }),
+    closeViewLocalOnline () {
+      this.viewLocalOnline = false
+      this.viewLanguageSelect = true
+    },
+    closeViewLanguageSelect () {
+      this.viewLanguageSelect = false
+    },
     selectNode (node, data, tree) {
       console.log(node)
       if (!node.path) {

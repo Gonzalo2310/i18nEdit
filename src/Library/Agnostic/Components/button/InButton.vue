@@ -2,7 +2,6 @@
   <span>
     <el-button :type="processType" v-if="ui === 'element' " @click="eventVue('click')" :disabled="!enabled">{{text}}</el-button>
     <Button :type="processType" v-if="ui ==='iview'" @click="eventVue('click')" :disabled="!enabled">{{text}}</Button>
-    {{type}}
   </span>
 </template>
 

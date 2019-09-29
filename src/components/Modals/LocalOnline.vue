@@ -1,10 +1,10 @@
 <template>
   <in-modal :visible="dialogVisible" :title="$t('edit.title')">
-    Este es el contenido del modal
+    Seleccione una de las opciones para iniciar el trabajo de traducción.
     <template slot="footer">
-     <!-- <in-button type="primary" text="Abrir Local" @click="eventVue('close')"/>-->
-      <in-button type="success" text="Abrir proyecto guardado" :enabled="false" />
-     <!-- <in-button type="danger" text="Cerrar" @click="eventVue('close')" /> -->
+     <in-button type="primary" text="Abrir Local" @click="eventVue('close')"/>
+     <in-button type="success" text="Abrir proyecto guardado" :enabled="false" />
+     <in-button type="danger" text="Cerrar" @click="eventVue('close')" />
     </template>
   </in-modal>
 </template>
