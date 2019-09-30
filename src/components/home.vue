@@ -6,6 +6,7 @@
       </span>
     </el-tree>
     <local-online :dialog-visible="viewLocalOnline" @close="closeViewLocalOnline()"/>
+    <where-look-language :dialog-visible="viewWhereLookLanguage" @close="closeViewWhereLookLanguage()" />
     <language-select :dialog-visible="viewLanguageSelect" @close="closeViewLanguageSelect()"/>
   </div>
 </template>
@@ -15,14 +16,16 @@
 import { mapActions, mapState } from 'vuex'
 import LocalOnline from './Modals/LocalOnline'
 import LanguageSelect from './Modals/LanguageSelect'
+import WhereLookLanguage from './Modals/WhereLookLanguage'
 
 export default {
   name: 'home',
-  components: { LocalOnline, LanguageSelect },
+  components: { LocalOnline, LanguageSelect, WhereLookLanguage },
   data () {
     return {
       viewLocalOnline: true,
-      viewLanguageSelect: false
+      viewLanguageSelect: false,
+      viewWhereLookLanguage: false
     }
   },
   mounted () {
@@ -44,6 +47,10 @@ export default {
     }),
     closeViewLocalOnline () {
       this.viewLocalOnline = false
+      this.viewWhereLookLanguage = true
+    },
+    closeViewWhereLookLanguage () {
+      this.viewWhereLookLanguage = false
       this.viewLanguageSelect = true
     },
     closeViewLanguageSelect () {
