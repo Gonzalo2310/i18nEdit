@@ -6,7 +6,6 @@
     <Checkbox v-model="isChecked" v-if="ui ==='iview'"><span>{{title}}</span>
       <span><slot></slot></span>
     </Checkbox>
-
   </div>
 </template>
 

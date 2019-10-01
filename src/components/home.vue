@@ -1,10 +1,11 @@
 <template>
   <div>
-    <el-tree :data="elTree" node-key="uuid" @node-click="selectNode">
+   <!-- <el-tree :data="elTree" node-key="uuid" @node-click="selectNode">
       <span class="custom-tree-node" slot-scope="{ node, data }">
         <span :class="data.style">{{ node.label }}</span>
       </span>
-    </el-tree>
+    </el-tree>-->
+    <edit />
     <local-online :dialog-visible="viewLocalOnline" @close="closeViewLocalOnline()"/>
     <where-look-language :dialog-visible="viewWhereLookLanguage" @close="closeViewWhereLookLanguage()" />
     <language-select :dialog-visible="viewLanguageSelect" @close="closeViewLanguageSelect()"/>
@@ -17,15 +18,17 @@ import { mapActions, mapState } from 'vuex'
 import LocalOnline from './Modals/LocalOnline'
 import LanguageSelect from './Modals/LanguageSelect'
 import WhereLookLanguage from './Modals/WhereLookLanguage'
+import Edit from './Edit'
 
 export default {
   name: 'home',
-  components: { LocalOnline, LanguageSelect, WhereLookLanguage },
+  components: { LocalOnline, LanguageSelect, WhereLookLanguage, Edit },
   data () {
     return {
       viewLocalOnline: true,
       viewLanguageSelect: false,
-      viewWhereLookLanguage: false
+      viewWhereLookLanguage: false,
+      viewEdit: false
     }
   },
   mounted () {

@@ -3,9 +3,10 @@
     Con el checkbox indique que Idiomas piensa trabajar y el radio para elegir el idioma maestro
     <label>Buscador: </label>
     <in-input placeholder="Filtra los resultados" :value="inputSearch" @input="changeSearch()" />
-    <in-check-box :title="option.title" v-for="option in options" :key="option.value">
+    <div class="grid" v-for="option in options" :key="option.value">
+      <in-check-box :title="option.title" />
       <in-radio :options="[{title: '', value:option.value}]" />
-    </in-check-box>
+    </div>
     <template slot="footer">
       <in-button type="primary" text="Aceptar el cambio" @click="eventVue('close')"/>
       <in-button type="danger" text="Cancelar" @click="eventVue('close')" />
@@ -30,17 +31,21 @@ export default {
     },
     languageList: {
       type: Array,
-      required: true
+      required: false
     }
   },
   data () {
     return {
-      options: [
+      inputSearch: ''
+    }
+  },
+  computed: {
+    options () {
+      return [
         { title: 'Español', value: 1 },
         { title: 'Ingles', value: 2 },
         { title: 'Catalan', value: 3 }
-      ],
-      inputSearch: ''
+      ]
     }
   },
   methods: {
@@ -50,3 +55,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+</style>
