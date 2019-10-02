@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Input v-model="isValue" :placeholder="placeholder" v-if="ui ==='iview'"/>
-    <el-input :placeholder="placeholder" v-model="isValue" v-if="ui === 'element' "></el-input>
+    <Input v-model="isValue" :placeholder="placeholder" v-if="ui ==='iview'" :readonly="readOnly"/>
+    <el-input :placeholder="placeholder" v-model="isValue" v-if="ui === 'element' " :readonly="readOnly"></el-input>
   </div>
 </template>
 
@@ -18,6 +18,11 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    readOnly: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   computed: {
