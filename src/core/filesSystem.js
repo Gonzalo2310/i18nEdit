@@ -17,7 +17,7 @@ const readFileContent = async (url) => {
 }
 
 const createFile = async (path, name) => {
-  fs.closeSync(fs.openSync(path + name, 'w'))
+  return fs.closeSync(fs.openSync(path + name, 'w'))
 }
 const deleteFile = async (path, name) => {
   fs.unlinkSync(path + name)
