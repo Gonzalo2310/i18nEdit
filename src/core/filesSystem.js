@@ -16,4 +16,18 @@ const readFileContent = async (url) => {
   return fs.readFileSync(url, 'utf8')
 }
 
-export { readFolder, typeItemFile, readFileContent }
+const createFile = async (path, name) => {
+  fs.closeSync(fs.openSync(path + name, 'w'))
+}
+const deleteFile = async (path, name) => {
+  fs.unlinkSync(path + name)
+}
+const changeProject = async (path, name, content) => {
+  fs.writeFile(path + name, content, (err) => {
+    if (err) {
+      console.error(err)
+    }
+  })
+}
+
+export { readFolder, typeItemFile, readFileContent, changeProject, createFile, deleteFile }

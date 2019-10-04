@@ -38,4 +38,8 @@ export default (app, http) => {
     })
     res.json({ msg: response })
   })
+
+  app.post('/project', (req, res) => {
+
+  })
 }

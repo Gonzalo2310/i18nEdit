@@ -33,7 +33,6 @@ export default {
   },
   mounted () {
     this.init()
-    console.log(this.$i18n.locale)
   },
   computed: {
     ...mapState({
