@@ -7,6 +7,7 @@ import toElementUI from '../src/utils/UI/treeToElementUI'
 import dotenv from 'dotenv'
 // import { searchUuid } from '../src/utils/searchUUID'
 import { readFileContent } from '../src/core/filesSystem'
+import { createProject } from '../src/utils/projects/functions'
 
 const rootPath = resolve(__dirname, '../../')
 
@@ -39,7 +40,12 @@ export default (app, http) => {
     res.json({ msg: response })
   })
 
-  app.post('/project', (req, res) => {
-
+  app.post('/project/create', (req, res) => {
+    const name = req.body.name
+    Promise.all([createProject(name)]).then((response) => {
+      console.log(response)
+    }).catch((error) => {
+      console.log(error)
+    })
   })
 }

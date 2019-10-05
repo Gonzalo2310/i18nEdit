@@ -6,7 +6,7 @@
       </span>
     </el-tree>-->
     <edit />
-    <local-online :dialog-visible="viewLocalOnline" @close="closeViewLocalOnline()"/>
+    <local-online :dialog-visible="viewLocalOnline" @close="closeViewLocalOnline()" @create="createProject"/>
     <where-look-language :dialog-visible="viewWhereLookLanguage" @close="closeViewWhereLookLanguage()" />
     <language-select :dialog-visible="viewLanguageSelect" @close="closeViewLanguageSelect()"/>
   </div>
@@ -45,8 +45,13 @@ export default {
     ...mapActions({
       init: 'initTree',
       content: 'contentFile',
-      search: 'searchById'
+      search: 'searchById',
+      setProject: 'setProject'
     }),
+    createProject (name) {
+      this.setProject(name)
+      console.log(name)
+    },
     closeViewLocalOnline () {
       this.viewLocalOnline = false
       this.viewWhereLookLanguage = true

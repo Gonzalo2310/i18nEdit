@@ -36,7 +36,7 @@ export default {
       this.projectName = value
     },
     createProject () {
-      this.eventVue('close')
+      this.eventVue('create', this.projectName)
     }
   }
 }

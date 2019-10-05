@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { getAllTree, getFileContent } from './store/getData'
+import { createProject } from './store/setData'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     elTree: [],
-    files: []
+    files: [],
+    project: {}
   },
   mutations: {
     updateElTree: (state, tree) => { state.elTree = tree },
@@ -17,6 +19,9 @@ export default new Vuex.Store({
         name,
         file
       })
+    },
+    updateNameProject (state, name) {
+      state.project.name = name
     }
   },
   actions: {
@@ -30,6 +35,9 @@ export default new Vuex.Store({
     },
     searchById: ({ commit }, uuid) => {
       getFileContent(commit, uuid)
+    },
+    setProject: ({ commit }, name) => {
+      createProject(commit, name)
     }
   }
 })

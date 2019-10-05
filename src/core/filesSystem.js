@@ -16,8 +16,11 @@ const readFileContent = async (url) => {
   return fs.readFileSync(url, 'utf8')
 }
 
-const createFile = async (path, name) => {
-  return fs.closeSync(fs.openSync(path + name, 'w'))
+const createFile = async (path, name, content = null) => {
+  return fs.writeFile(path + name, content, function (err) {
+    if (err) throw err
+    console.log('File is created successfully.')
+  })
 }
 const deleteFile = async (path, name) => {
   fs.unlinkSync(path + name)
