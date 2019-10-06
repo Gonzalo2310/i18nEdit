@@ -54,7 +54,7 @@ export default {
       get () {
         return this.currentValue
       },
-      set (value) { console.log(value) }
+      set (value) { this.eventVue('change', value) }
     }
   }
 }

@@ -7,7 +7,7 @@
     </el-tree>-->
     <edit />
     <local-online :dialog-visible="viewLocalOnline" @close="closeViewLocalOnline()" @create="createProject"/>
-    <where-look-language :dialog-visible="viewWhereLookLanguage" @close="closeViewWhereLookLanguage()" />
+    <where-look-language :dialog-visible="viewWhereLookLanguage" @close="closeViewWhereLookLanguage()" @change="updateProject"/>
     <language-select :dialog-visible="viewLanguageSelect" @close="closeViewLanguageSelect()"/>
   </div>
 </template>
@@ -46,11 +46,17 @@ export default {
       init: 'initTree',
       content: 'contentFile',
       search: 'searchById',
-      setProject: 'setProject'
+      setProject: 'setProject',
+      setUpdateProject: 'changeProject'
     }),
     createProject (name) {
       this.setProject(name)
-      console.log(name)
+      this.closeViewLocalOnline()
+    },
+    updateProject (project) {
+      this.setUpdateProject({ field: 'origin', content: project.typeName })
+      this.setUpdateProject({ field: 'recursive', content: project.recursive })
+      this.closeViewWhereLookLanguage()
     },
     closeViewLocalOnline () {
       this.viewLocalOnline = false

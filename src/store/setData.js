@@ -7,3 +7,12 @@ export const createProject = (commit, name) => {
     console.log(error)
   })
 }
+export const updateProject = (commit, name, fieldName, fieldValue) => {
+  axios.post('/project/update', { field: fieldName, content: fieldValue })
+    .then((response) => {
+      console.log(response)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}

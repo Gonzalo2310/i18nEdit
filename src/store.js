@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { getAllTree, getFileContent } from './store/getData'
-import { createProject } from './store/setData'
+import { createProject, updateProject } from './store/setData'
 
 Vue.use(Vuex)
 
@@ -22,7 +22,8 @@ export default new Vuex.Store({
     },
     updateNameProject (state, name) {
       state.project.name = name
-    }
+    },
+    updateCurrentProject: (state, project) => { state.project = project }
   },
   actions: {
     initTree ({ commit }) {
@@ -38,6 +39,9 @@ export default new Vuex.Store({
     },
     setProject: ({ commit }, name) => {
       createProject(commit, name)
+    },
+    changeProject ({ commit, state }, { field, content }) {
+      updateProject(commit, state.project.name, field, content)
     }
   }
 })

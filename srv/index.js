@@ -7,7 +7,7 @@ import toElementUI from '../src/utils/UI/treeToElementUI'
 import dotenv from 'dotenv'
 // import { searchUuid } from '../src/utils/searchUUID'
 import { readFileContent } from '../src/core/filesSystem'
-import { createProject } from '../src/utils/projects/functions'
+import { createProject, changeProject } from '../src/utils/projects/functions'
 
 const rootPath = resolve(__dirname, '../../')
 
@@ -47,5 +47,11 @@ export default (app, http) => {
     }).catch((error) => {
       console.log(error)
     })
+  })
+  app.post('/project/update', (req, res) => {
+    const field = req.body.field
+    const content = req.body.content
+    const name = req.body.name
+    changeProject(name, field, content)
   })
 }
