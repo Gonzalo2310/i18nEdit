@@ -30,8 +30,6 @@ export default new Vuex.Store({
       getAllTree(commit)
     },
     contentFile ({ commit }, { path, name }) {
-      console.log('path: ', path)
-      console.log('name: ', name)
       getFileContent(commit, path, name)
     },
     searchById: ({ commit }, uuid) => {

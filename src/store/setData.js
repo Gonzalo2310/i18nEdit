@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 export const createProject = (commit, name) => {
-  axios.post('/project/create', { name }).then((response) => {
-    commit('updateProjectName', response || 'noname')
+  axios.post('/project/create', { name }).then(() => {
+    commit('updateNameProject', name)
   }).catch((error) => {
     console.log(error)
   })

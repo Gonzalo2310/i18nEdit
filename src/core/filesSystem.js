@@ -19,7 +19,6 @@ const readFileContent = async (url) => {
 const createFile = async (path, name, content = null) => {
   return fs.writeFile(path + name, content, function (err) {
     if (err) throw err
-    console.log('File is created successfully.')
   })
 }
 const deleteFile = async (path, name) => {
@@ -33,4 +32,14 @@ const changeProject = async (path, name, content) => {
   })
 }
 
-export { readFolder, typeItemFile, readFileContent, changeProject, createFile, deleteFile }
+const existFile = async (path, name) => {
+  return fs.access(path + name, fs.F_OK, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    return true
+  })
+}
+
+export { readFolder, typeItemFile, readFileContent, changeProject, createFile, deleteFile, existFile }

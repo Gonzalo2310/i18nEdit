@@ -42,11 +42,7 @@ export default (app, http) => {
 
   app.post('/project/create', (req, res) => {
     const name = req.body.name
-    Promise.all([createProject(name)]).then((response) => {
-      console.log(response)
-    }).catch((error) => {
-      console.log(error)
-    })
+    createProject(name)
   })
   app.post('/project/update', (req, res) => {
     const field = req.body.field
