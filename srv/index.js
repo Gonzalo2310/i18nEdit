@@ -42,12 +42,15 @@ export default (app, http) => {
 
   app.post('/project/create', (req, res) => {
     const name = req.body.name
+    console.log('name: ', name)
     createProject(name)
+    res.status(200)
   })
   app.post('/project/update', (req, res) => {
     const field = req.body.field
     const content = req.body.content
     const name = req.body.name
     changeProject(name, field, content)
+    res.status(200)
   })
 }

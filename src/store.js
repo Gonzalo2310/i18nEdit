@@ -21,6 +21,7 @@ export default new Vuex.Store({
       })
     },
     updateNameProject (state, name) {
+      console.log('muttation name: ', name)
       state.project.name = name
     },
     updateCurrentProject: (state, project) => { state.project = project }
@@ -36,6 +37,7 @@ export default new Vuex.Store({
       getFileContent(commit, uuid)
     },
     setProject: ({ commit }, name) => {
+      console.log('name: ', name)
       createProject(commit, name)
     },
     changeProject ({ commit, state }, { field, content }) {
