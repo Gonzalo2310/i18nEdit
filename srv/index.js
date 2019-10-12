@@ -50,7 +50,6 @@ export default (app, http) => {
     const field = req.body.field
     const content = req.body.content
     const name = req.body.name
-    changeProject(name, field, content)
-    res.status(200)
+    res.json({ data: changeProject(name, field, content) })
   })
 }

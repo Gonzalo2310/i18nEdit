@@ -1,13 +1,14 @@
-import { createFile } from '../../core/filesSystem'
+import { createFile, readFileContent } from '../../core/filesSystem'
 
 const PROJECT_URL = 'src/projects/'
 
 export const createProject = (name) => {
-  const content = 'const project = {}\nexport default project\n'
-  return createFile(PROJECT_URL, name + '.js', content)
+  const content = '{\n\tname: \'' + name + '\'\n}\n'
+  return createFile(PROJECT_URL, name + '.json', content)
 }
 
 export const changeProject = (name, field, content) => {
-  const project = import(PROJECT_URL + name + '.js')
+  const project = readFileContent(PROJECT_URL + name + '.json')
   console.log(project)
+  return project
 }
