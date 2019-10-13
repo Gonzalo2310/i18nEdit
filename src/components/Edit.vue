@@ -6,7 +6,7 @@
     <label>Idioma basico</label> / <label>Idioma elegido</label>
     </div>
     <div>
-      <in-input :read-only="true" placeholder="contenido del texto del lenguaje de guia" />
+      <el-input :read-only="true" placeholder="contenido del texto del lenguaje de guia" />
     </div>
     <label>Sugerencias</label>
     <ul> <!-- listados de los UI's talvez? -->
@@ -21,7 +21,7 @@
       <label>Texto actual</label>
     </div>
     <div>
-      <in-input placeholder="Texto a modificar"  />
+      <el-input placeholder="Texto a modificar"  />
     </div>
     <hr />
     <div>
@@ -32,17 +32,16 @@
       </ul>
     </div>
     <hr />
-    <in-button type="primary" text="Close / open" @click="open = !open"></in-button>
+    <el-button type="primary" text="Close / open" @click="open = !open"></el-button>
   </div>
 </template>
 
 <script>
-import InButton from '../Library/Agnostic/Components/button/InButton'
+
 import EditDrawer from './EditDrawer'
-import InInput from '../Library/Agnostic/Components/Form/InInput'
 export default {
   name: 'Edit',
-  components: { InInput, EditDrawer, InButton },
+  components: { EditDrawer },
   data () {
     return {
       open: false

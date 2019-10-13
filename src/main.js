@@ -4,7 +4,6 @@ import store from './store'
 import i18n from './locales'
 
 import './plugins/element'
-import './plugins/iview.js'
 
 Vue.config.productionTip = false
 

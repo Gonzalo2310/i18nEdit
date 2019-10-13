@@ -19,7 +19,6 @@
     "dotenv": "^8.1.0",
     "element-ui": "^2.12.0",
     "fs": "^0.0.1-security",
-    "iview": "^3.0.1",
     "path": "^0.12.7",
     "uuid": "^3.3.3",
     "vue": "^2.6.10",
@@ -48,7 +47,6 @@
     "sass-loader": "^7.1.0",
     "vue-cli-plugin-element": "^1.0.1",
     "vue-cli-plugin-express": "^1.0.1",
-    "vue-cli-plugin-iview": "^1.0.6",
     "vue-template-compiler": "^2.6.10"
   },
   "gitHooks": {

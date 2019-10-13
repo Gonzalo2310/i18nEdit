@@ -1,23 +1,19 @@
 <template>
-  <in-modal :visible="dialogVisible" title="Seleccione el origen de los idiomas">
+  <el-modal :visible="dialogVisible" title="Seleccione el origen de los idiomas">
     Indique en donde debería buscarse el listado de idiomas
-    <in-radio :options="options" @change="optionChange"/>
-    <in-check-box title="Busqueda Recursiva" @change="recursiveChange"/>
+    <el-radio :options="options" @change="optionChange"/>
+    <el-checkbox title="Busqueda Recursiva" @change="recursiveChange"/>
     <template slot="footer">
-      <in-button type="primary" text="Aceptar el cambio" @click="changeValue()"/>
-      <in-button type="danger" text="Cancelar" @click="eventVue('close')" />
+      <el-button type="primary" text="Aceptar el cambio" @click="changeValue()"/>
+      <el-button type="danger" text="Cancelar" @click="eventVue('close')" />
     </template>
-  </in-modal>
+  </el-modal>
 </template>
 
 <script>
-import InButton from '../../Library/Agnostic/Components/button/InButton'
-import InModal from '../../Library/Agnostic/Components/modal/InModal'
-import InRadio from '../../Library/Agnostic/Components/Form/InRadio'
-import InCheckBox from '../../Library/Agnostic/Components/Form/InCheckBox'
+
 export default {
   name: 'LanguageSelect',
-  components: { InModal, InButton, InRadio, InCheckBox },
   props: {
     dialogVisible: {
       required: false,
