@@ -3,7 +3,7 @@ import { createFile, readFileContent } from '../../core/filesSystem'
 const PROJECT_URL = 'src/projects/'
 
 export const createProject = (name) => {
-  const content = '{\n\tname: \'' + name + '\'\n}\n'
+  const content = '{\n\t"name": "' + name + '"\n}\n'
   return createFile(PROJECT_URL, name + '.json', content)
 }
 

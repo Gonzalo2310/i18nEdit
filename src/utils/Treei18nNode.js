@@ -1,14 +1,15 @@
 import { readFolder, typeItemFile } from '../core/filesSystem'
 import Treei18nNode from '../Class/Treei18nNode'
 import searchInFileName from './searchLanguage/searchInFileName'
+import uuid from 'uuid/v4'
 
 const regex = /^[a-zA-Z|-]+/g
 
 const treeFolder = async (url, parent = null) => {
   if (!parent) {
     parent = new Treei18nNode()
-    parent.Assign.uuid()
-    parent.Assign.name('Root')
+    parent.uuid = uuid()
+    parent.name = 'Root'
   }
   let items = await readFolder(url)
   let result = parent
@@ -18,26 +19,28 @@ const treeFolder = async (url, parent = null) => {
         let element = new Treei18nNode()
         response = response[0]
         if (response.file) {
-          element.Assign.type('file')
+          element.type = 'file'
           element.path = url + '/' + item
-          element.Assign.uuid()
-          element.Assign.name(item)
-          element.Assign.country(searchInFileName(item.match(regex)[0]))
+          element.uuid = uuid()
+          element.name = item
+          element.language = searchInFileName(item.match(regex)[0])
         }
         if (response.directory) {
-          element.Assign.type('folder')
+          element.type = 'folder'
           element.path = url + '/' + item
-          element.Assign.uuid()
-          element.Assign.name(item)
+          element.uuid = uuid()
+          element.name = item
           Promise.all([treeFolder(url + '/' + item, element)]).then((response) => {
-            element.Assign.children(response[0])
+            element.children = response[0]
           })
         }
-        result.Assign.children(element)
+        result.children.push(element)
       })
     })
   }
   return Promise.all([result]).then((response) => {
+    console.log('response')
+    console.log(response[0])
     return response[0]
   })
 }

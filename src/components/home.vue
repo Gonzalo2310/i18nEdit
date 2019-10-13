@@ -4,7 +4,7 @@
       <span class="custom-tree-node" slot-scope="{ node, data }">
         <span :class="data.style">{{ node.label }}</span>
       </span>
-    </el-tree>-->
+    </el-tree> -->
     <edit />
     <local-online :dialog-visible="viewLocalOnline" @close="closeViewLocalOnline()" @create="createProject"/>
     <where-look-language :dialog-visible="viewWhereLookLanguage" @close="closeViewWhereLookLanguage()" @change="updateProject"/>
@@ -32,7 +32,7 @@ export default {
     }
   },
   mounted () {
-    this.init()
+    // this.init()
   },
   computed: {
     ...mapState({
