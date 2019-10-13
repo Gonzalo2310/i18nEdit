@@ -36,18 +36,15 @@ export default {
   },
   computed: {
     ...mapState({
-      tree: state => state.tree,
-      elTree: state => state.elTree,
-      files: state => state.files
+      elTree: state => state.storeFile.elTree
     })
   },
   methods: {
     ...mapActions({
-      init: 'initTree',
-      content: 'contentFile',
-      search: 'searchById',
-      setProject: 'setProject',
-      setUpdateProject: 'changeProject'
+      init: 'storeFile/initTree',
+      content: 'storeFile/contentFile',
+      setProject: 'storeProject/setProject',
+      setUpdateProject: 'storeProject/changeProject'
     }),
     createProject (name) {
       this.setProject(name)

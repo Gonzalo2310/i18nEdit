@@ -1,2 +1,1 @@
-export function someMutation (/* state */) {
-}
+export function updateElTree (state, tree) { state.elTree = tree }
