@@ -1,17 +1,17 @@
 <template>
-  <el-modal :visible="dialogVisible" title="Seleccione los Idiomas de trabajo">
+  <el-dialog :visible="dialogVisible" title="Seleccione los Idiomas de trabajo">
     Con el checkbox indique que Idiomas piensa trabajar y el radio para elegir el idioma maestro
     <label>Buscador: </label>
-    <el-input placeholder="Filtra los resultados" :value="inputSearch" @input="changeSearch()" />
+    <el-input placeholder="Filtra los resultados" v-model="inputSearch" />
     <div class="grid" v-for="option in options" :key="option.value">
-      <el-checkbox :title="option.title" />
-      <el-radio :options="[{title: '', value:option.value}]" />
+      <el-checkbox v-model="option.check">{{option.title}}</el-checkbox>
+      <el-radio v-model="languageMaster" :label="option.value">&nbsp;</el-radio>
     </div>
     <template slot="footer">
-      <el-button type="primary" text="Aceptar el cambio" @click="eventVue('close')"/>
-      <el-button type="danger" text="Cancelar" @click="eventVue('close')" />
+      <el-button type="primary" @click="eventVue('close')">Aceptar el cambio</el-button>
+      <el-button type="danger" @click="eventVue('close')" >Cancelar</el-button>
     </template>
-  </el-modal>
+  </el-dialog>
 </template>
 
 <script>
@@ -30,21 +30,13 @@ export default {
   },
   data () {
     return {
-      inputSearch: ''
-    }
-  },
-  computed: {
-    options () {
-      return [
-        { title: 'Español', value: 1 },
-        { title: 'Ingles', value: 2 },
-        { title: 'Catalan', value: 3 }
+      inputSearch: '',
+      languageMaster: 1,
+      options: [
+        { title: 'Español', value: 1, check: false },
+        { title: 'Ingles', value: 2, check: false },
+        { title: 'Catalan', value: 3, check: false }
       ]
-    }
-  },
-  methods: {
-    changeSearch (value) {
-      this.inputSearch = value
     }
   }
 }

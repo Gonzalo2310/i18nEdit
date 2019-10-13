@@ -2,10 +2,10 @@
   <el-drawer :visible="open" title="Titulo" position="left">
     <label>Deberia ser un badge</label><el-input placeholder="Filtro" />
     <label>Contenido Tree</label>
-    <hr />
+    <el-divider></el-divider>
     <label>Lista de colores del tree</label>
-    <hr />
-    <el-button type="primary" text="Close / open" @click="closeEvent()"></el-button>
+    <el-divider></el-divider>
+    <el-button type="primary" @click="closeEvent()">Close / Open</el-button>
   </el-drawer>
 </template>
 

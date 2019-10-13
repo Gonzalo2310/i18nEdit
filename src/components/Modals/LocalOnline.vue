@@ -1,14 +1,14 @@
 <template>
-  <el-modal :visible="dialogVisible" :title="$t('edit.title')">
+  <el-dialog :visible="dialogVisible" :title="$t('edit.title')">
     Seleccione una de las opciones para iniciar el trabajo de traducción.
     <h6>Si va a crear un proyecto nuevo ingrese el nombre que le desea asignar:</h6>
     <el-input placeholder="Nombre del nuevo proyecto" :value="projectName" @input="changeInput"/>
     <template slot="footer">
-     <el-button type="primary" text="Crear proyecto" @click="createProject()"/>
-     <el-button type="success" text="Abrir proyecto guardado" :enabled="false" />
-     <el-button type="danger" text="Cerrar" @click="eventVue('close')" />
+      <el-button type="primary" @click="createProject()">Crear proyecto</el-button>
+      <el-button type="success" :enabled="false" >Abrir Proyecto guardado</el-button>
+      <el-button type="danger" @click="eventVue('close')" >Cerrar</el-button>
     </template>
-  </el-modal>
+  </el-dialog>
 </template>
 
 <script>

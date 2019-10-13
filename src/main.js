@@ -8,11 +8,6 @@ import './plugins/element'
 Vue.config.productionTip = false
 
 Vue.mixin({
-  computed: {
-    ui () {
-      return process.env.VUE_APP_UI
-    }
-  },
   methods: {
     eventVue (event, value = null) {
       if (value) {

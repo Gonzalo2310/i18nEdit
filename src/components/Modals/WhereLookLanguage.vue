@@ -1,13 +1,15 @@
 <template>
-  <el-modal :visible="dialogVisible" title="Seleccione el origen de los idiomas">
+  <el-dialog :visible="dialogVisible" title="Seleccione el origen de los idiomas">
     Indique en donde debería buscarse el listado de idiomas
-    <el-radio :options="options" @change="optionChange"/>
-    <el-checkbox title="Busqueda Recursiva" @change="recursiveChange"/>
+    <el-radio-group v-model="currentOption">
+      <el-radio v-for="option in options" :key="option.value" :label="option.value" >{{option.title}}</el-radio>
+    </el-radio-group>
+    <el-checkbox v-model="currentCheck">Búsqueda recursiva</el-checkbox>
     <template slot="footer">
-      <el-button type="primary" text="Aceptar el cambio" @click="changeValue()"/>
-      <el-button type="danger" text="Cancelar" @click="eventVue('close')" />
+      <el-button type="primary" @click="changeValue()">Aceptar el cambio</el-button>
+      <el-button type="danger" @click="eventVue('close')" >Cancelar</el-button>
     </template>
-  </el-modal>
+  </el-dialog>
 </template>
 
 <script>
@@ -33,12 +35,6 @@ export default {
     }
   },
   methods: {
-    optionChange (value) {
-      this.currentOption = value
-    },
-    recursiveChange (value) {
-      this.currentCheck = value
-    },
     changeValue () {
       this.eventVue('change', { typeName: this.currentOption, recursive: this.currentCheck })
     }

@@ -9,7 +9,7 @@
       <el-input :read-only="true" placeholder="contenido del texto del lenguaje de guia" />
     </div>
     <label>Sugerencias</label>
-    <ul> <!-- listados de los UI's talvez? -->
+    <ul>
       <li>Google</li>
       <li>Bind</li>
       <li>yahoo</li>
@@ -32,7 +32,7 @@
       </ul>
     </div>
     <hr />
-    <el-button type="primary" text="Close / open" @click="open = !open"></el-button>
+    <el-button type="primary" @click="open = !open">Close / Open</el-button>
   </div>
 </template>
 
