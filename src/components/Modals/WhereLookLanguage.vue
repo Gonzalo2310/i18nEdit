@@ -2,7 +2,9 @@
   <el-dialog :visible="dialogVisible" title="Seleccione el origen de los idiomas">
     Indique en donde debería buscarse el listado de idiomas
     <el-radio-group v-model="currentOption">
-      <el-radio v-for="option in options" :key="option.value" :label="option.value" >{{option.title}}</el-radio>
+      <div  v-for="option in options" :key="option.value">
+      <el-radio :label="option.value" :disabled="option.disable">{{option.title}}</el-radio>
+      </div>
     </el-radio-group>
     <el-checkbox v-model="currentCheck">Búsqueda recursiva</el-checkbox>
     <template slot="footer">
@@ -26,9 +28,9 @@ export default {
   data () {
     return {
       options: [
-        { title: 'Nombre de carpetas', value: 1 },
-        { title: 'Nombre de archivos', value: 2 },
-        { title: 'Nombre de objetos dentro de los archivos', value: 3 }
+        { title: 'Nombre de carpetas', value: 1, disable: true },
+        { title: 'Nombre de archivos', value: 2, disable: false },
+        { title: 'Nombre de objetos dentro de los archivos', value: 3, disable: true }
       ],
       currentOption: 0,
       currentCheck: false

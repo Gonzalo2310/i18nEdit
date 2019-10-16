@@ -24,7 +24,7 @@ const createFile = async (path, name, content = null) => {
 const deleteFile = async (path, name) => {
   fs.unlinkSync(path + name)
 }
-const changeProject = async (path, name, content) => {
+const changeProjectFile = async (path, name, content) => {
   fs.writeFile(path + name, content, (err) => {
     if (err) {
       console.error(err)
@@ -42,4 +42,4 @@ const existFile = async (path, name) => {
   })
 }
 
-export { readFolder, typeItemFile, readFileContent, changeProject, createFile, deleteFile, existFile }
+export { readFolder, typeItemFile, readFileContent, changeProjectFile, createFile, deleteFile, existFile }

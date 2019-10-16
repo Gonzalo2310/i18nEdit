@@ -47,9 +47,10 @@ export default (app, http) => {
     res.status(200)
   })
   app.post('/project/update', (req, res) => {
-    const field = req.body.field
-    const content = req.body.content
+    const project = req.body.project
     const name = req.body.name
-    res.json({ data: changeProject(name, field, content) })
+    console.log('index: ')
+    console.log(project)
+    res.json({ data: changeProject(name, project) })
   })
 }

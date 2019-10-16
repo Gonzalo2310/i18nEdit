@@ -7,8 +7,10 @@ export const createProject = (commit, name) => {
     console.log(error)
   })
 }
-export const updateProject = (commit, name, fieldName, fieldValue) => {
-  apiFetch.post('/project/update', { field: fieldName, content: fieldValue, name })
+export const updateProject = (commit, name, project) => {
+  console.log('fetch: ')
+  console.log(project)
+  apiFetch.post('/project/update', { project, name })
     .then((response) => {
       console.log(response)
     })

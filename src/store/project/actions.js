@@ -4,6 +4,8 @@ export function setProject ({ commit }, name) {
   createProject(commit, name)
 }
 
-export function changeProject ({ commit, state }, { field, content }) {
-  updateProject(commit, state.project.name, field, content)
+export function changeProject ({ commit, state }, project) {
+  console.log('action: ')
+  console.log(project)
+  updateProject(commit, state.name, project)
 }

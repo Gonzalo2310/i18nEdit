@@ -51,8 +51,7 @@ export default {
       this.closeViewLocalOnline()
     },
     updateProject (project) {
-      this.setUpdateProject({ field: 'origin', content: project.typeName })
-      this.setUpdateProject({ field: 'recursive', content: project.recursive })
+      this.setUpdateProject([{ field: 'origin', content: project.typeName }, { field: 'recursive', content: project.recursive }])
       this.closeViewWhereLookLanguage()
     },
     closeViewLocalOnline () {

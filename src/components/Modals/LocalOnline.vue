@@ -1,7 +1,7 @@
 <template>
   <el-dialog :visible="dialogVisible" :title="$t('edit.title')">
     Seleccione una de las opciones para iniciar el trabajo de traducción.
-    <h6>Si va a crear un proyecto nuevo ingrese el nombre que le desea asignar:</h6>
+    <h4>Si va a crear un proyecto nuevo ingrese el nombre que le desea asignar:</h4>
     <el-input placeholder="Nombre del nuevo proyecto" :value="projectName" @input="changeInput"/>
     <template slot="footer">
       <el-button type="primary" @click="createProject()">Crear proyecto</el-button>
@@ -37,7 +37,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-
-</style>
