@@ -9,6 +9,7 @@
     <local-online :dialog-visible="viewLocalOnline" @close="closeViewLocalOnline()" @create="createProject"/>
     <where-look-language :dialog-visible="viewWhereLookLanguage" @close="closeViewWhereLookLanguage()" @change="updateProject"/>
     <language-select :dialog-visible="viewLanguageSelect" @close="closeViewLanguageSelect()"/>
+    <folder-tree :dialog-visible="viewTreeFolder" @close="closeViewTreeFolder()"/>
   </div>
 </template>
 
@@ -19,15 +20,17 @@ import LocalOnline from './Modals/LocalOnline'
 import LanguageSelect from './Modals/LanguageSelect'
 import WhereLookLanguage from './Modals/WhereLookLanguage'
 import Edit from './Edit'
+import FolderTree from './Modals/local/FolderTree'
 
 export default {
   name: 'home',
-  components: { LocalOnline, LanguageSelect, WhereLookLanguage, Edit },
+  components: { LocalOnline, LanguageSelect, WhereLookLanguage, Edit, FolderTree },
   data () {
     return {
       viewLocalOnline: true,
       viewLanguageSelect: false,
       viewWhereLookLanguage: false,
+      viewTreeFolder: false,
       viewEdit: false
     }
   },
@@ -56,6 +59,10 @@ export default {
     },
     closeViewLocalOnline () {
       this.viewLocalOnline = false
+      this.viewTreeFolder = true
+    },
+    closeViewTreeFolder () {
+      this.viewTreeFolder = false
       this.viewWhereLookLanguage = true
     },
     closeViewWhereLookLanguage () {

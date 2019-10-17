@@ -5,36 +5,40 @@ import uuid from 'uuid/v4'
 
 const regex = /^[a-zA-Z|-]+/g
 
-const treeFolder = async (url, parent = null) => {
+const treeFolder = async (url, parent = null, onlyTree = false) => {
   if (!parent) {
     parent = new Treei18nNode()
     parent.uuid = uuid()
     parent.name = 'Root'
+    parent.path = url
   }
   let items = await readFolder(url)
   let result = parent
   if (Array.isArray(items)) {
     items.forEach((item) => {
+      console.log('item')
+      console.log(item)
       Promise.all([typeItemFile(url, item)]).then((response) => {
         let element = new Treei18nNode()
         response = response[0]
-        if (response.file) {
+        if (response.file && !onlyTree) {
           element.type = 'file'
           element.path = url + '/' + item
           element.uuid = uuid()
           element.name = item
           element.language = searchInFileName(item.match(regex)[0])
+          result.children.push(element)
         }
         if (response.directory) {
           element.type = 'folder'
           element.path = url + '/' + item
           element.uuid = uuid()
           element.name = item
-          Promise.all([treeFolder(url + '/' + item, element)]).then((response) => {
+          Promise.all([treeFolder(url + '/' + item, element, onlyTree)]).then((response) => {
             element.children = response[0]
           })
+          result.children.push(element)
         }
-        result.children.push(element)
       })
     })
   }

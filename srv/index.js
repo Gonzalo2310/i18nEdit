@@ -39,7 +39,7 @@ export default (app, http) => {
     })
     res.json({ msg: response })
   })
-
+  /** ************* Project ******************/
   app.post('/project/create', (req, res) => {
     const name = req.body.name
     console.log('name: ', name)
@@ -52,5 +52,13 @@ export default (app, http) => {
     console.log('index: ')
     console.log(project)
     res.json({ data: changeProject(name, project) })
+  })
+
+  /** **************** Language ****************/
+  app.get('/tree/language', (req, res) => {
+    Promise.all([treeFolder(rootPath + process.env.APP_EDIT_URL, null, true)]).then((response) => {
+      // treeComplex = response
+      res.json({ data: toElementUI(response) })
+    })
   })
 }
