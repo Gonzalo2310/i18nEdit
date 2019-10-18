@@ -9,15 +9,13 @@ const treeFolder = async (url, parent = null, onlyTree = false) => {
   if (!parent) {
     parent = new Treei18nNode()
     parent.uuid = uuid()
-    parent.name = 'Root'
+    parent.name = url
     parent.path = url
   }
   let items = await readFolder(url)
   let result = parent
   if (Array.isArray(items)) {
     items.forEach((item) => {
-      console.log('item')
-      console.log(item)
       Promise.all([typeItemFile(url, item)]).then((response) => {
         let element = new Treei18nNode()
         response = response[0]
@@ -43,8 +41,6 @@ const treeFolder = async (url, parent = null, onlyTree = false) => {
     })
   }
   return Promise.all([result]).then((response) => {
-    console.log('response')
-    console.log(response[0])
     return response[0]
   })
 }

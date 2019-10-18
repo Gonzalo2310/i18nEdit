@@ -42,23 +42,20 @@ export default (app, http) => {
   /** ************* Project ******************/
   app.post('/project/create', (req, res) => {
     const name = req.body.name
-    console.log('name: ', name)
     createProject(name)
     res.status(200)
   })
   app.post('/project/update', (req, res) => {
     const project = req.body.project
     const name = req.body.name
-    console.log('index: ')
-    console.log(project)
     res.json({ data: changeProject(name, project) })
   })
 
   /** **************** Language ****************/
   app.get('/tree/language', (req, res) => {
-    Promise.all([treeFolder(rootPath + process.env.APP_EDIT_URL, null, true)]).then((response) => {
-      // treeComplex = response
-      res.json({ data: toElementUI(response) })
+    const path = req.query.path || rootPath + process.env.APP_EDIT_URL
+    Promise.all([treeFolder(path, null, true)]).then((response) => {
+      res.json({ data: toElementUI(response), path })
     })
   })
 }

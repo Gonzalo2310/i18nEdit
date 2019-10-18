@@ -1,3 +1,4 @@
 export default {
-  tree: []
+  tree: [],
+  path: null
 }
